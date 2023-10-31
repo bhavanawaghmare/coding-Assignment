@@ -1,0 +1,323 @@
+1) import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+public class ShuffleArray {
+    public static void main(String[] args) {
+        // Create an ArrayList with the values (1, 2, 3, 4, 5, 6, 7)
+        List<Integer> list = new ArrayList<>();
+        list.add(1);
+        list.add(2);
+        list.add(3);
+        list.add(4);
+        list.add(5);
+        list.add(6);
+        list.add(7);
+
+        // Shuffle the list
+        Collections.shuffle(list);
+
+        // Convert the shuffled list back to an array (if needed)
+        Integer[] shuffledArray = list.toArray(new Integer[0]);
+
+        // Print the shuffled array
+        for (int i = 0; i < shuffledArray.length; i++) {
+            System.out.print(shuffledArray[i] + " ");
+        }
+    }
+}
+----------------------------------------------------------------------------------------------------------------------
+2) import java.util.HashMap;
+import java.util.Scanner;
+
+public class RomanToInteger {
+    public static void main(String[] args) {
+        // Create a HashMap to store the values of Roman numerals
+        HashMap<Character, Integer> romanValues = new HashMap<>();
+        romanValues.put('I', 1);
+        romanValues.put('V', 5);
+        romanValues.put('X', 10);
+        romanValues.put('L', 50);
+        romanValues.put('C', 100);
+        romanValues.put('D', 500);
+        romanValues.put('M', 1000);
+
+        // Create a Scanner to read the Roman numeral input
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter a Roman numeral: ");
+        String romanNumeral = scanner.nextLine().toUpperCase();
+        scanner.close();
+
+        int result = 0;
+        int prevValue = 0;
+
+        // Traverse the Roman numeral from right to left
+        for (int i = romanNumeral.length() - 1; i >= 0; i--) {
+            char currentChar = romanNumeral.charAt(i);
+            int currentValue = romanValues.get(currentChar);
+
+            // Check if we need to subtract the previous value
+            if (currentValue < prevValue) {
+                result -= currentValue;
+            } else {
+                result += currentValue;
+            }
+
+            prevValue = currentValue;
+        }
+
+        System.out.println("Integer value: " + result);
+    }
+}
+-------------------------------------------------------------------------------------------------------------------------------------------------
+3) import java.util.HashSet;
+
+public class PangramChecker {
+    public static void main(String[] args) {
+        String input = "The quick brown fox jumps over the lazy dog";
+
+        if (isPangram(input)) {
+            System.out.println("The input is a pangram.");
+        } else {
+            System.out.println("The input is not a pangram.");
+        }
+    }
+
+    public static boolean isPangram(String input) {
+        // Convert the input to lowercase to ignore case
+        input = input.toLowerCase();
+
+        // Create a HashSet to store unique letters
+        HashSet<Character> uniqueLetters = new HashSet<>();
+
+        // Iterate through the characters in the input
+        for (int i = 0; i < input.length(); i++) {
+            char ch = input.charAt(i);
+
+            // Check if the character is an alphabet letter
+            if (ch >= 'a' && ch <= 'z') {
+                uniqueLetters.add(ch);
+            }
+        }
+
+        // If the number of unique letters is 26, it's a pangram
+        return uniqueLetters.size() == 26;
+    }
+}
+    
+
+
+-------------------------------------------------------------------------------------------
+
+3) function reverseWordsInSentence(sentence) {
+    // Split the sentence into words
+    const words = sentence.split(' ');
+
+    // Reverse each word and store them in a new array
+    const reversedWords = words.map(word => reverseWord(word));
+
+    // Join the reversed words back into a sentence
+    const reversedSentence = reversedWords.join(' ');
+
+    return reversedSentence;
+}
+
+function reverseWord(word) {
+    // Convert the word to an array of characters, reverse it, and join it back into a word
+    return word.split('').reverse().join('');
+}
+
+const inputSentence = "Hello World! This is a test.";
+const reversed = reverseWordsInSentence(inputSentence);
+
+console.log(reversed);
+
+
+2) // Sample array to be sorted in descending order
+let arr = [5, 2, 9, 1, 5, 6];
+
+// Use the sort() method with a custom comparator function
+arr.sort(function(a, b) {
+  // To sort in descending order, simply reverse the comparison
+  return b - a;
+});
+
+// The array is now sorted in descending order
+console.log(arr); // [9, 6, 5, 5, 2, 1]
+
+let originalArray = [5, 2, 9, 1, 5, 6];
+
+// Create a copy of the original array
+let arr = originalArray.slice();
+
+arr.sort(function(a, b) {
+  return b - a;
+});
+
+console.log(arr); // [9, 6, 5, 5, 2, 1]
+console.log(originalArray); // [5, 2, 9, 1, 5, 6] (unchanged)
+-------------------------------------------------------------------------------------------------------------------
+
+4) 
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Basic Calculator</title>
+    <style>
+        .calculator {
+            width: 300px;
+            margin: 0 auto;
+            border: 1px solid #ccc;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        input[type="text"] {
+            width: 100%;
+            font-size: 20px;
+            padding: 5px;
+            margin-bottom: 10px;
+        }
+        button {
+            width: 70px;
+            height: 70px;
+            font-size: 20px;
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <input type="text" id="display" readonly>
+        <button onclick="appendToDisplay('7')">7</button>
+        <button onclick="appendToDisplay('8')">8</button>
+        <button onclick="appendToDisplay('9')">9</button>
+        <button onclick="appendToDisplay('+')">+</button>
+        <button onclick="appendToDisplay('4')">4</button>
+        <button onclick="appendToDisplay('5')">5</button>
+        <button onclick="appendToDisplay('6')">6</button>
+        <button onclick="appendToDisplay('-')">-</button>
+        <button onclick="appendToDisplay('1')">1</button>
+        <button onclick="appendToDisplay('2')">2</button>
+        <button onclick="appendToDisplay('3')">3</button>
+        <button onclick="appendToDisplay('*')">*</button>
+        <button onclick="appendToDisplay('0')">0</button>
+        <button onclick="appendToDisplay('.')">.</button>
+        <button onclick="appendToDisplay('/')">/</button>
+        <button onclick="calculateResult()">=</button>
+        <button onclick="clearDisplay()">C</button>
+    </div>
+
+    <script>
+        function appendToDisplay(value) {
+            document.getElementById('display').value += value;
+        }
+
+        function clearDisplay() {
+            document.getElementById('display').value = '';
+        }
+
+        function calculateResult() {
+            const expression = document.getElementById('display').value;
+            const result = eval(expression);
+
+            if (isFinite(result)) {
+                document.getElementById('display').value = result;
+            } else {
+                document.getElementById('display').value = 'Error';
+            }
+        }
+    </script>
+</body>
+</html>
+-------------------------------------------------------------------------------------------------------
+5)  
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Survey Form</title>
+  <style>
+    /* Style the form for better presentation */
+    label {
+      display: block;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+
+<h2>Survey Form</h2>
+<form id="surveyForm" onsubmit="return submitForm();">
+  <label for="firstName">First Name:</label>
+  <input type="text" id="firstName" required>
+
+  <label for="lastName">Last Name:</label>
+  <input type="text" id="lastName" required>
+
+  <label for="dob">Date of Birth:</label>
+  <input type="date" id="dob" required>
+
+  <label for="country">Country:</label>
+  <select id="country" required>
+    <option value="USA">USA</option>
+    <option value="Canada">Canada</option>
+    <option value="UK">UK</option>
+    <!-- Add more countries as needed -->
+  </select>
+
+  <label>Gender:</label>
+  <input type="checkbox" id="male" name="gender" value="Male"> Male
+  <input type="checkbox" id="female" name="gender" value="Female"> Female
+  <input type="checkbox" id="other" name="gender" value="Other"> Other
+
+  <label for="profession">Profession:</label>
+  <input type="text" id="profession" required>
+
+  <label for="email">Email:</label>
+  <input type="email" id="email" required>
+
+  <label for="mobile">Mobile Number:</label>
+  <input type="tel" id="mobile" required>
+
+  <input type="submit" value="Submit">
+  <input type="reset" value="Reset">
+</form>
+
+<script>
+function submitForm() {
+  // Get the form values
+  var firstName = document.getElementById('firstName').value;
+  var lastName = document.getElementById('lastName').value;
+  var dob = document.getElementById('dob').value;
+  var country = document.getElementById('country').value;
+  var gender = document.querySelectorAll('input[name="gender"]:checked');
+  var profession = document.getElementById('profession').value;
+  var email = document.getElementById('email').value;
+  var mobile = document.getElementById('mobile').value;
+
+  // Perform validation here (you can add your own validation logic)
+
+  // Create a string to display in the popup
+  var popupText = "First Name: " + firstName + "\n";
+  popupText += "Last Name: " + lastName + "\n";
+  popupText += "Date of Birth: " + dob + "\n";
+  popupText += "Country: " + country + "\n";
+  popupText += "Gender: " + Array.from(gender, el => el.value).join(", ") + "\n";
+  popupText += "Profession: " + profession + "\n";
+  popupText += "Email: " + email + "\n";
+  popupText += "Mobile Number: " + mobile + "\n";
+
+  // Display the popup
+  alert("Survey Data:\n\n" + popupText);
+
+  // Reset the form
+  document.getElementById('surveyForm').reset();
+
+  // Prevent form submission
+  return false;
+}
+</script>
+
+</body>
+</html>
